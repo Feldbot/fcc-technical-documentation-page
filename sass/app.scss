@@ -1,0 +1,91 @@
+/* Theme variable overrides */
+// See Notes (1)
+// $theme-colors: (
+//   "primary": pink,
+//   "danger": #ff4136
+// );
+
+// Import all Bootstrap styles
+// @import "../node_modules/bootstrap/scss/bootstrap";
+
+// Import parts of Bootstrap
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Optional
+@import "../node_modules/bootstrap/scss/reboot";
+// @import "../node_modules/bootstrap/scss/type";
+// @import "../node_modules/bootstrap/scss/images";
+// @import "../node_modules/bootstrap/scss/code";
+// @import "../node_modules/bootstrap/scss/grid";
+// @import "../node_modules/bootstrap/scss/buttons";
+
+/* Custom styles */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.margin {
+  background-color: rgb(236, 230, 226);
+}
+
+.navbar {
+  background-color: rgb(217, 215, 215);
+
+  #navbar {
+    height: auto;
+
+    .nav-link {
+
+    }
+  }
+}
+
+.main {
+  background-color: #fff;
+}
+
+
+@include media-breakpoint-up(md) {
+  .navbar {
+    padding: relative;
+    width: auto;
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      width: 25%;
+
+      .nav-link {
+
+      }
+    }
+  }
+}
+
+// @include media-breakpoint-up(md) {
+//   #navbar {
+//     position: fixed;
+//     top: 0;
+//   }
+// }
+
+//  ***** Notes *****
+// xs (0), sm (576), md (768), lg (992), xl (1200)
+// (1)  - Variable overrides need to precede Bootstrap imports. The !default variable flag won't apply if it has been assigned already, so variable overrides needs to come first.
+//      - 3 different ways to override with map or variables. Reference: https://stackoverflow.com/questions/49923787/bootstrap-4-theme-colors-variables-vs-map
+//        1. Override default values - NOT RECOMMENDED!
+//        2. Override map with map_get
+//           $theme-colors : (
+//             'primary' : pink;
+//           )
+//           $my-color: map_get($theme-colors, 'primary'); // $pink
+//        3. Override map with variables
+//           $my-primary-color: pink;
+//           $theme-colors : (
+//             'primary' : $my-primary-color;
+//           )
+// (2)
