@@ -12,11 +12,21 @@
 
 <body>
   <div class="container-fluid">
+
     <div class="row">
-      <div class="col-md-1 col-lg-2 margin"></div>
-      <div class="col-md-3 col-lg-3 navbar">
+      <div class="col header fixed-top">
+        <img class="mt-2 mr-2" src="https://raw.githubusercontent.com/d3/d3-logo/master/d3.png">
+        <h1 class="d-inline position-relative">Data-Driven Documents</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1 col-xl-2 bg-info"></div>
+      <div class="col-md-3 col-xl-2 navbar">
         <nav id="navbar" class="mt-3 pr-3">
-          <header class="text-primary">D3 Introduction</header>
+          <header>
+            <h5>D3 Introduction Contents</h5>
+          </header>
           <a href="#Download" class="nav-link">Download</a>
           <a href="#Introduction" class="nav-link">Introduction</a>
           <a href="#Selections" class="nav-link">Selections</a>
@@ -28,17 +38,25 @@
         </nav>
       </div>
 
-      <div class="col-md-7 col-lg-5 main">
-        <main id="main-doc">
+      <div class="col-md-7 col-xl-6 main">
+        <main id="main-doc" class="pl-2 pr-2">
+
+          <!-- See Notes (1) -->
+          <span id="Download" class="anchor"></span>
           <section id="Download" class="main-section">
-            <header>Download</header>
+            <header class="mt-3">
+              <h4>Download</h4>
+            </header>
             <p>To link directly to the latest release, copy this snippet:
             <pre><code class="html">&lt;script src="https://d3js.org/d3.v5.min.js">&lt;/script></code></pre>
             <p>The <a href="https://github.com/d3/d3">full source and tests</a> are also available <a href="https://github.com/d3/d3/zipball/master">for download</a> on GitHub.
           </section>
 
+          <span id="Introduction" class="anchor"></span>
           <section id="Introduction" class="main-section">
-            <header>Introduction</header>
+            <header>
+              <h4>Introduction</h4>
+            </header>
             <p><b>D3.js</b> is a JavaScript library for manipulating documents based on data. <b>D3</b> helps you bring data to life using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.</p>
 
             <p><b>D3</b> allows you to bind arbitrary data to a Document Object Model (DOM), and then apply data-driven transformations to the document. For example, you can use D3 to generate an HTML table from an array of numbers. Or, use the same data to create an interactive SVG bar chart with smooth transitions and interaction.</p>
@@ -46,16 +64,20 @@
             <p>D3 is not a monolithic framework that seeks to provide every conceivable feature. Instead, D3 solves the crux of the problem: efficient manipulation of documents based on data. This avoids proprietary representation and affords extraordinary flexibility, exposing the full capabilities of web standards such as HTML, SVG, and CSS. With minimal overhead, D3 is extremely fast, supporting large datasets and dynamic behaviors for interaction and animation. D3’s functional style allows code reuse through a diverse collection of <a href="https://github.com/d3/d3/blob/master/API.md">official</a> and <a href="https://www.npmjs.com/browse/keyword/d3-module">community-developed</a> modules.</p>
           </section>
 
+          <span id="Selections" class="anchor"></span>
           <section id="Selections" class="main-section">
-            <header>Selections</header>
+            <header>
+              <h4>Selections</h4>
+            </header>
 
             <p>Modifying documents using the <a href="https://www.w3.org/DOM/DOMTR">W3C DOM API</a> is tedious: the method names are verbose, and the imperative approach requires manual iteration and bookkeeping of temporary state. For example, to change the text color of paragraph elements:</p>
 
             <pre><code>var paragraphs = document.getElementsByTagName("p");
-            for (var i = 0; i &lt; paragraphs.length; i++) {
-              var paragraph = paragraphs.item(i);
-              paragraph.style.setProperty("color", "white", null);
-            }</code></pre>
+for (var i = 0; i &lt; paragraphs.length; i++) {
+  var paragraph = paragraphs.item(i);
+  paragraph.style.setProperty("color", "white", null);
+}</code>
+            </pre>
 
             <p>D3 employs a declarative approach, operating on arbitrary sets of nodes called <i>selections</i>. For example, you can rewrite the above loop as:</p>
 
@@ -70,92 +92,108 @@
             <p>D3 provides numerous methods for mutating nodes: setting attributes or styles; registering event listeners; adding, removing or sorting nodes; and changing HTML or text content. These suffice for the vast majority of needs. Direct access to the underlying DOM is also possible, as each D3 selection is simply an array of nodes.</p>
           </section>
 
+          <span id="Dynamic_Properties" class="anchor"></span>
           <section id="Dynamic_Properties" class="main-section">
-            <header>Dynamic Properties</header>
+            <header>
+              <h4>Dynamic Properties</h4>
+            </header>
             <p>Readers familiar with other DOM frameworks such as <a href="https://jquery.com/">jQuery</a> should immediately recognize similarities with D3. Yet styles, attributes, and other properties can be specified as <i>functions of data</i> in D3, not just simple constants. Despite their apparent simplicity, these functions can be surprisingly powerful; the <a href="https://github.com/d3/d3-geo/blob/master/README.md#geoPath">d3.geoPath</a> function, for example, projects <a href="https://tools.ietf.org/html/rfc7946">geographic coordinates</a> into SVG <a href="https://www.w3.org/TR/SVG/paths.html#PathData">path data</a>. D3 provides many built-in reusable functions and function factories, such as <a href="https://github.com/d3/d3-shape">graphical primitives</a> for area, line and pie charts.</p>
 
             <p>For example, to randomly color paragraphs:</p>
 
             <pre><code>d3.selectAll("p").style("color", function() {
-              return "hsl(" + Math.random() * 360 + ",100%,50%)";
-            });</code></pre>
+  return "hsl(" + Math.random() * 360 + ",100%,50%)";
+});</code></pre>
 
             <p>To alternate shades of gray for even and odd nodes:</p>
 
             <pre><code>d3.selectAll("p").style("color", function(d, i) {
-              return i % 2 ? "#fff" : "#eee";
-            });</code></pre>
+  return i % 2 ? "#fff" : "#eee";
+});</code></pre>
 
             <p>Computed properties often refer to bound data. Data is specified as an array of values, and each value is passed as the first argument (<code>d</code>) to selection functions. With the default join-by-index, the first element in the data array is passed to the first node in the selection, the second element to the second node, and so on. For example, if you bind an array of numbers to paragraph elements, you can use these numbers to compute dynamic font sizes:</p>
 
             <pre><code>d3.selectAll("p")
-              .data([4, 8, 15, 16, 23, 42])
-                .style("font-size", function(d) { return d + "px"; });</code></pre>
+  .data([4, 8, 15, 16, 23, 42])
+  .style("font-size", function(d) { return d + "px"; });</code></pre>
 
             <p>Once the data has been bound to the document, you can omit the <code>data</code> operator; D3 will retrieve the previously-bound data. This allows you to recompute properties without rebinding.</p>
           </section>
 
+          <span id="Enter_and_Exit" class="anchor"></span>
           <section id="Enter_and_Exit" class="main-section">
-            <header>Enter and Exit</header>
+            <header>
+              <h4>Enter and Exit</h4>
+            </header>
             <p>Using D3’s <i>enter</i> and <i>exit</i> selections, you can create new nodes for incoming data and remove outgoing nodes that are no longer needed.</p>
 
             <p>When data is bound to a selection, each element in the data array is paired with the corresponding node in the selection. If there are fewer nodes than data, the extra data elements form the enter selection, which you can instantiate by appending to the <code>enter</code> selection. For example:</p>
 
             <pre><code>d3.select("body")
-              .selectAll("p")
-              .data([4, 8, 15, 16, 23, 42])
-              .enter().append("p")
-                .text(function(d) { return "I’m number " + d + "!"; });</code></pre>
+  .selectAll("p")
+  .data([4, 8, 15, 16, 23, 42])
+  .enter().append("p")
+  .text(function(d) { return "I’m number " + d + "!"; });</code></pre>
 
             <p>Updating nodes are the default selection—the result of the <code>data</code> operator. Thus, if you forget about the enter and exit selections, you will automatically select only the elements for which there exists corresponding data. A common pattern is to break the initial selection into three parts: the updating nodes to modify, the entering nodes to add, and the exiting nodes to remove.</p>
 
             <pre><code>// Update…
-            var p = d3.select("body")
-              .selectAll("p")
-              .data([4, 8, 15, 16, 23, 42])
-                .text(function(d) { return d; });
+var p = d3.select("body")
+  .selectAll("p")
+  .data([4, 8, 15, 16, 23, 42])
+  .text(function(d) { return d; });
 
-            // Enter…
-            p.enter().append("p")
-                .text(function(d) { return d; });
+// Enter…
+p.enter().append("p")
+  .text(function(d) { return d; });
 
-            // Exit…
-            p.exit().remove();</code></pre>
+// Exit…
+p.exit().remove();</code></pre>
 
             <p>By handling these three cases separately, you specify precisely which operations run on which nodes. This improves performance and offers greater control over transitions. For example, with a bar chart you might initialize entering bars using the old scale, and then transition entering bars to the new scale along with the updating and exiting bars.</p>
 
             <p>D3 lets you transform documents based on data; this includes both creating and destroying elements. D3 allows you to change an existing document in response to user interaction, animation over time, or even asynchronous notification from a third-party. A hybrid approach is even possible, where the document is initially rendered on the server, and updated on the client via D3.</p>
           </section>
 
+          <span id="Transformation,_not_Representation"
+                class="anchor"></span>
           <section id="Transformation,_not_Representation"
                    class="main-section">
-            <header>Transformation, not Representation</header>
+            <header>
+              <h4>Transformation, not Representation</h4>
+            </header>
             <p>D3 does not introduce a new visual representation. Unlike <a href="https://processing.org/">Processing</a> or <a href="https://mbostock.github.io/protovis/">Protovis</a>, D3’s vocabulary of graphical marks comes directly from web standards: HTML, SVG, and CSS. For example, you can create SVG elements using D3 and style them with external stylesheets. You can use composite filter effects, dashed strokes and clipping. If browser vendors introduce new features tomorrow, you’ll be able to use them immediately—no toolkit update required. And, if you decide in the future to use a toolkit other than D3, you can take your knowledge of standards with you!</p>
 
             <p>Best of all, D3 is easy to debug using the browser’s built-in element inspector: the nodes that you manipulate with D3 are exactly those that the browser understands natively.</p>
           </section>
 
+          <span id="Transitions" class="anchor"></span>
           <section id="Transitions" class="main-section">
-            <header>Transitions</header>
+            <header>
+              <h4>Transitions</h4>
+            </header>
             <p>D3’s focus on transformation extends naturally to animated transitions. Transitions gradually interpolate styles and attributes over time. Tweening can be controlled via easing functions such as “elastic”, “cubic-in-out” and “linear”. D3’s interpolators support both primitives, such as numbers and numbers embedded within strings (font sizes, path data, <i>etc.</i>), and compound values. You can even extend D3’s interpolator registry to support complex properties and data structures.</p>
 
             <p>For example, to fade the background of the page to black:</p>
 
             <pre><code>d3.select("body").transition()
-                .style("background-color", "black");</code></pre>
+  .style("background-color", "black");</code></pre>
 
             <p>Or, to resize circles in a symbol map with a staggered delay:</p>
 
             <pre><code>d3.selectAll("circle").transition()
-                .duration(750)
-                .delay(function(d, i) { return i * 10; })
-                .attr("r", function(d) { return Math.sqrt(d * scale); });</code></pre>
+  .duration(750)
+  .delay(function(d, i) { return i * 10; })
+  .attr("r", function(d) { return Math.sqrt(d * scale); });</code></pre>
 
             <p>By modifying only the attributes that actually change, D3 reduces overhead and allows greater graphical complexity at high frame rates. D3 also allows sequencing of complex transitions via events. And, you can still use CSS3 transitions; D3 does not replace the browser’s toolbox, but exposes it in a way that is easier to use.</p>
           </section>
 
+          <span id="Learn_More" class="anchor"></span>
           <section id="Learn_More" class="main-section">
-            <header>Learn More</header>
+            <header>
+              <h4>Learn More</h4>
+            </header>
             <p>Want to learn more? These resources provide more background on the introductory concepts presented here.</p>
             <ul>
               <li><a href="https://github.com/d3/d3"
@@ -172,12 +210,13 @@
           </section>
         </main>
       </div>
-      <div class="col-md-1 col-lg-2 margin"></div>
+      <div class="col-md-1 col-xl-2 bg-info"></div>
     </div>
 
     <div class="row">
-      <footer>
-        Library released under <a href="https://opensource.org/licenses/BSD-3-Clause">BSD license</a>. Copyright 2017 <a href="https://bost.ocks.org/mike/" rel="author">Mike Bostock</a>.
+      <footer class="col-12 pt-4 pb-4 text-center bg-info">
+        For demonstration purposes only&mdash;visit <a href="https://d3js.org/#introduction" target="_blank">D3.org</a> for official documentation<br>
+        Page design and code by <a href="https://www.linkedin.com/in/feldbot/" target="_blank">feldbot</a> | D3 content &copy; 2017 <a href="https://bost.ocks.org/mike/" rel="author" target="_blank">Mike Bostock</a>
       </footer>
     </div>
 
@@ -191,3 +230,7 @@
 </body>
 
 </html>
+
+<!--  NOTES
+(1) Using inline anchors with fixed headers causes the anchor link to display at the top of the viewport, below the header. To alignment below the header, <span> tags with the corresponding IDs were added. The duplicate IDs are to pass the freeCodeCamp tests. See Notes in app.scss file for further explanation.
+-->

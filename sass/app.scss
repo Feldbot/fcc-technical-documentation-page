@@ -1,9 +1,10 @@
 /* Theme variable overrides */
 // See Notes (1)
-// $theme-colors: (
-//   "primary": pink,
-//   "danger": #ff4136
-// );
+$theme-colors: (
+  "primary": #17a2b8
+);
+
+$teal: map_get($theme-colors, 'primary');
 
 // Import all Bootstrap styles
 // @import "../node_modules/bootstrap/scss/bootstrap";
@@ -23,55 +24,142 @@
 // @import "../node_modules/bootstrap/scss/buttons";
 
 /* Custom styles */
-body {
-  margin: 0;
-  padding: 0;
+html {
+  font-size: 1rem;
 }
 
-.margin {
-  background-color: rgb(236, 230, 226);
+// Header
+.header {
+  height: 55px;
+  width: 100%;
+  background-color: rgba($teal, .9);
+  border-bottom: 1px solid $gray-600;
+  text-align: left;
+  white-space: nowrap; // prevent text wrap
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+
+  h1 {
+    top: 10px;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 2px 2px 3px $gray-700;
+  }
 }
 
+// Navbar
 .navbar {
-  background-color: rgb(217, 215, 215);
+  background-color: $gray-200;
+  margin-top: 54px;
 
   #navbar {
     height: auto;
+    z-index: 100;
+  }
+}
 
-    .nav-link {
+// Main content
+main {
+  background-color: none;
 
+  h4 {
+    margin-top: 15px;
+  }
+}
+
+.anchor {  // See Notes (2)
+  display: block;
+  height: 56px;
+  margin-top: -56px;
+  // visibility: hidden;
+}
+
+pre,
+code {
+  font-family: "Menlo", monospace;
+  -webkit-text-size-adjust: 100%;
+}
+
+code {
+  line-height: 1em;
+}
+
+pre {
+  border-left: solid 2px $gray-400;
+  padding-left: 10px;
+  margin: 2em 0 2em -12px;
+}
+
+// Footer
+footer {
+  color: $gray-300;
+  border-top: 1px solid $gray-600;
+
+  a {
+    color: $gray-100;
+
+    &:hover {
+      color: $gray-500;
+      cursor: pointer;
     }
   }
 }
 
-.main {
-  background-color: #fff;
-}
+// Media queries
+@include media-breakpoint-up(sm) {
+  .header {
+    height: 75px;
+    text-align: center;
 
+    img {
+      width: 60px;
+      height: 60px;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      text-shadow: 3px 3px 5px $gray-700;
+    }
+  }
+
+  .navbar {
+    margin-top: 74px;
+  }
+
+  .anchor {
+    height: 76px;
+    margin-top: -76px;
+  }
+}
 
 @include media-breakpoint-up(md) {
-  .navbar {
-    padding: relative;
-    width: auto;
+  .header {
 
-    #navbar {
-      position: fixed;
-      top: 0;
-      width: 25%;
-
-      .nav-link {
-
-      }
+    h1 {
+      top: 13px;
+      font-size: 2rem;
     }
+  }
+
+  #navbar {
+    position: fixed;
+    top: 75px;
+    width: 22%;
+  }
+
+  main {
+    margin-top: 72px;
   }
 }
 
-// @include media-breakpoint-up(md) {
-//   #navbar {
-//     position: fixed;
-//     top: 0;
-//   }
-// }
+@include media-breakpoint-up(xl) {
+  #navbar {
+    width: 15%;
+  }
+}
 
 //  ***** Notes *****
 // xs (0), sm (576), md (768), lg (992), xl (1200)
@@ -88,4 +176,4 @@ body {
 //           $theme-colors : (
 //             'primary' : $my-primary-color;
 //           )
-// (2)
+// (2) The corresponding css `.anchor` adds height equal to header, the removes the equivalent top margin. The result is clearing the header height, while subtracting the same amount to keep from displaying that height. Visibility is hidden in most examples, but I didn't notice that was needed. Reference: https://pixelflips.com/blog/anchor-links-with-a-fixed-header

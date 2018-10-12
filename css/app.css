@@ -101,12 +101,12 @@ sup {
   top: -.5em; }
 
 a {
-  color: #007bff;
+  color: #17a2b8;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
   a:hover {
-    color: #0056b3;
+    color: #0f6674;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -262,26 +262,93 @@ template {
   display: none !important; }
 
 /* Custom styles */
-body {
-  margin: 0;
-  padding: 0; }
+html {
+  font-size: 1rem; }
 
-.margin {
-  background-color: #ece6e2; }
+.header {
+  height: 55px;
+  width: 100%;
+  background-color: rgba(23, 162, 184, 0.9);
+  border-bottom: 1px solid #6c757d;
+  text-align: left;
+  white-space: nowrap; }
+  .header img {
+    width: 40px;
+    height: 40px; }
+  .header h1 {
+    top: 10px;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 2px 2px 3px #495057; }
 
 .navbar {
-  background-color: #d9d7d7; }
+  background-color: #e9ecef;
+  margin-top: 54px; }
   .navbar #navbar {
-    height: auto; }
+    height: auto;
+    z-index: 100; }
 
-.main {
-  background-color: #fff; }
+main {
+  background-color: none; }
+  main h4 {
+    margin-top: 15px; }
 
-@media (min-width: 768px) {
+.anchor {
+  display: block;
+  height: 56px;
+  margin-top: -56px; }
+
+pre,
+code {
+  font-family: "Menlo", monospace;
+  -webkit-text-size-adjust: 100%; }
+
+code {
+  line-height: 1em; }
+
+pre {
+  border-left: solid 2px #ced4da;
+  padding-left: 10px;
+  margin: 2em 0 2em -12px; }
+
+footer {
+  color: #dee2e6;
+  border-top: 1px solid #6c757d; }
+  footer a {
+    color: #f8f9fa; }
+    footer a:hover {
+      color: #adb5bd;
+      cursor: pointer; }
+
+@media (min-width: 576px) {
+  .header {
+    height: 75px;
+    text-align: center; }
+    .header img {
+      width: 60px;
+      height: 60px; }
+    .header h1 {
+      font-size: 1.7rem;
+      text-shadow: 3px 3px 5px #495057; }
+
   .navbar {
-    padding: relative;
-    width: auto; }
-    .navbar #navbar {
-      position: fixed;
-      top: 0;
-      width: 25%; } }
+    margin-top: 74px; }
+
+  .anchor {
+    height: 76px;
+    margin-top: -76px; } }
+@media (min-width: 768px) {
+  .header h1 {
+    top: 13px;
+    font-size: 2rem; }
+
+  #navbar {
+    position: fixed;
+    top: 75px;
+    width: 22%; }
+
+  main {
+    margin-top: 72px; } }
+@media (min-width: 1200px) {
+  #navbar {
+    width: 15%; } }
